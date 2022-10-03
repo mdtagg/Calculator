@@ -21,7 +21,7 @@ body {
 }
 
 .display {
-    height:25vh;
+    height:25%;
     width:100%;
     border:1px solid white;
     display:flex;
@@ -34,4 +34,48 @@ body {
 
 .result {
     color:white;
+}
+
+.buttons {
+    height:75%;
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    border:1px solid white;
+}
+
+.buttons-row {
+    height:20%;
+    width:100%;
+    border:1px solid white;
+    display:flex;
+    justify-content: space-evenly;
+}
+
+.light-grey-button {
+    background-color: lightgrey;
+    color:black;
+    border-radius:100%;
+    width:25%;
+}
+
+.orange-button {
+    background-color:orange;
+    color:white;
+    border-radius: 100%;
+    width:25%;
+}
+
+.dark-grey-button {
+    background-color:darkgrey;
+    color:white;
+    border-radius:100%;
+    width:25%;
+}
+
+.zero-button {
+    background-color: darkgrey;
+    color:white;
+    border-radius: 35%;
+    width:50%;
 }
