@@ -18,7 +18,6 @@ body {
     height:80vh;
     width:25vw;
     background-color: black;
-    
 }
 
 .display {
@@ -60,6 +59,7 @@ body {
     align-items: center;
     justify-content: center;
     flex:1;
+    cursor: pointer;
 }
 
 .light-gray {
@@ -71,6 +71,13 @@ body {
 .orange {
     background-color:orange;
     color:white;
+}
+
+.transition {
+    
+    transition-duration: 0.5s;
+    background-color:white;
+    color:orange
 }
 
 .dark-gray {
