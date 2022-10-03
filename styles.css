@@ -3,7 +3,6 @@
     padding:0;
     box-sizing: border-box;
     font-family: sans-serif;
-    /* font-size:30px; */
 }
 
 body {
@@ -29,8 +28,7 @@ body {
     align-items:flex-end;
     justify-content: flex-end;
     font-size: 75px;
-    
-    /* font-weight:100; */
+
 }
 
 .result {
@@ -44,7 +42,7 @@ body {
     display:flex;
     flex-direction: column;
     padding:7px;
-    font-size: 30px;
+    font-size: 35px;
 }
 
 .buttons-row {
@@ -67,6 +65,7 @@ body {
 .light-gray {
     background-color: lightgrey;
     color:black;
+    font-weight:600;
 }
 
 .orange {
@@ -79,13 +78,9 @@ body {
     color:white;
 }
 
-.zero-row {
-    /* margin-bottom:8px; */
-}
-
 .zero {
     border-radius:30px;
-    margin:13px;
+    margin: 8px 12px;
     flex:2;
     /* margin-right:15px; */
 }
