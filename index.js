@@ -1,12 +1,13 @@
 
 //Changing display by pressing number buttons
+let calcValue = []
 let firstNumber = []
 
 const numbers = document.querySelectorAll('.dark-gray')
 numbers.forEach(button => button.addEventListener('click', changeDisplay))
 
 function changeDisplay(e) {
-
+    
     let result = document.querySelector('.result')
     firstNumber.push(e.target.textContent)
     result.textContent = firstNumber.join('')
@@ -38,6 +39,9 @@ function getOperator(e) {
         return
     }else {
         operatorValue = e.target.textContent
+        calcValue.push(parseInt(firstNumber.join('')))
+        console.log(calcValue)
+        firstNumber = []
     }
     }
 
@@ -46,10 +50,23 @@ function getOperator(e) {
 const calculator = document.querySelector('.equals')
 calculator.addEventListener('click', calculate)
 
-function calculate(firstValue) {
+function calculate() {
+    calcValue.push(parseInt(firstNumber.join('')))
+
+    const endResult = calcValue.reduce((result,nextNumber) => {
+        return operatorValue === '+' ?
+        result + nextNumber :
+        operatorValue === '-' ?
+        result - nextNumber :
+        operatorValue == 'x' ?
+        result * nextNumber :
+        operatorValue === '÷'
+        })
+
     
-    console.log(parseInt(firstNumber.join('')))
-    console.log(operatorValue)
-    // return `${firstNumber} ${operator} ${secondNumber}`
+
+
+    let endResultDisplay = document.querySelector('.result')
+    endResultDisplay.textContent = endResult
 }
 
