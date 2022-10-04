@@ -15,11 +15,7 @@ function changeDisplay(e) {
     let result = document.querySelector('.result')
     firstNumber.push(e.target.textContent)
     result.textContent = firstNumber.join('')
-    // console.log(firstNumber)
     }
-
-    // calcValue.push(parseInt(firstNumber.join('')))
-
 
 /*Changing operator button styling upon click, assigning operator value to global 
 variable */
@@ -75,8 +71,7 @@ function calculate() {
         result / nextNumber
         
         })
-        // console.log(calcValue)
-        // console.log(endResult)
+
     let stringEndResult = endResult.toString().split('')
     console.log(stringEndResult)
 
