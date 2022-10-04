@@ -99,4 +99,8 @@ body {
     /* margin-right:15px; */
 }
 
+.equals {
+    transition-duration:0.1s;
+}
+
 

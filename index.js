@@ -63,6 +63,14 @@ function getOperator(e) {
     }
     }
     
+    //Equals button styling effects
+
+    const equalsColorPress = document.querySelector('.equals')
+    equalsColorPress.addEventListener('transitionend', (e) => {
+        e.target.classList.remove('transition')
+    })
+
+
     //Calculating the values 
 
 const calculator = document.querySelector('.equals')
@@ -108,8 +116,6 @@ nonOperativeButtons.forEach(button => {
         e.target.classList.remove('color-press')
     })
 })
-
-
 
 //Clear button 
 
