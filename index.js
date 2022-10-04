@@ -11,6 +11,7 @@ function changeDisplay(e) {
     let result = document.querySelector('.result')
     firstNumber.push(e.target.textContent)
     result.textContent = firstNumber.join('')
+    calcValue.push(parseInt(firstNumber.join('')))
 }
 
 /*Changing operator button styling upon click, assigning operator value to global 
@@ -34,13 +35,13 @@ function changeColor(e) {
 })}
 
 let operatorValue = ''
+console.log(operatorValue)
 function getOperator(e) {
     if(e.target.textContent === '=') {
         return
     }else {
         operatorValue = e.target.textContent
-        calcValue.push(parseInt(firstNumber.join('')))
-        console.log(calcValue)
+        // calcValue.push(parseInt(firstNumber.join('')))
         firstNumber = []
     }
     }
@@ -51,22 +52,26 @@ const calculator = document.querySelector('.equals')
 calculator.addEventListener('click', calculate)
 
 function calculate() {
-    calcValue.push(parseInt(firstNumber.join('')))
+    // calcValue.push(parseInt(firstNumber.join('')))
 
     const endResult = calcValue.reduce((result,nextNumber) => {
+
         return operatorValue === '+' ?
         result + nextNumber :
         operatorValue === '-' ?
         result - nextNumber :
         operatorValue == 'x' ?
         result * nextNumber :
-        operatorValue === '÷'
+        result / nextNumber
+        
         })
-
-    
-
+        console.log(calcValue)
+        console.log(endResult)
 
     let endResultDisplay = document.querySelector('.result')
     endResultDisplay.textContent = endResult
+
+        calcValue = []
+        calcValue[0] = endResult
 }
 
