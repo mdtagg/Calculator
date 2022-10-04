@@ -1,5 +1,4 @@
 
-//Task: Change display so that numbers above screen size add exponent indicator
 
 //Changing display by pressing number buttons
 let calcValue = []
@@ -52,9 +51,7 @@ function getOperator(e) {
     }else {
         operatorValue = e.target.textContent
         calcValue.push(parseFloat(firstNumber.join('')))
-        // console.log(calcValue)
         firstNumber = []
-        // console.log(firstNumber)
     }
     }
     
@@ -82,8 +79,11 @@ function calculate() {
     let stringEndResult = endResult.toString().split('')
     console.log(stringEndResult)
 
-    if(stringEndResult.length > 9) {
+    if(stringEndResult.length > 9 && operatorValue !== '÷') {
         endResult = `${stringEndResult[0]}e${stringEndResult.length - 1}`
+    } else if(stringEndResult.length > 9 && stringEndResult.includes('.')) {
+        endResult = endResult.toFixed(7)
+        console.log(endResult)
     }
 
     let endResultDisplay = document.querySelector('.result')
