@@ -112,14 +112,25 @@ posNeg.addEventListener('click', () => {
     if(firstNumber.join('') > 0) {
         firstNumber.unshift('-')
         displayChange.textContent = firstNumber.join('')
-        // console.log(firstNumber)
     }else if(firstNumber.join('') < 0) {
-        // console.log(firstNumber)
         firstNumber.shift()
         displayChange.textContent = firstNumber.join('')
-        // console.log(firstNumber)
     }else {
         return
     }
     console.log(firstNumber.join(''))
+})
+
+// percentage button
+
+const percentageButton = document.querySelector('.percentage')
+percentageButton.addEventListener('click', () => {
+    if(firstNumber.join('') !== 0) {
+        firstNumber[0] = firstNumber.join('') * .01
+        displayChange.textContent = firstNumber
+        console.log(firstNumber)
+    } else {
+        return
+    }
+
 })
