@@ -1,11 +1,4 @@
 
-/* Issue to fix: The operator buttons, works for first two operations but when 
-I press an operator button after pressing equals, and getting the result,
-the operator button adds the value in firstNumber before i can type in 
-the next number which causes an array of three numbers instead of two*/
-
-
-
 //Changing display by pressing number buttons
 let calcValue = []
 let firstNumber = []
@@ -42,15 +35,13 @@ function changeColor(e) {
 })}
 
 let operatorValue = ''
-console.log(operatorValue)
 function getOperator(e) {
     if(e.target.textContent === '=') {
-        // calcValue.push(parseInt(firstNumber.join('')))
+        calcValue.push(parseInt(firstNumber.join('')))
         return
     }else {
         operatorValue = e.target.textContent
         calcValue.push(parseInt(firstNumber.join('')))
-        // console.log(calcValue)
         firstNumber = []
     }
     }
@@ -62,8 +53,6 @@ calculator.addEventListener('click', calculate)
 
 
 function calculate() {
-    calcValue.push(parseInt(firstNumber.join('')))
-    
 
     const endResult = calcValue.reduce((result,nextNumber) => {
 
@@ -83,8 +72,7 @@ function calculate() {
     endResultDisplay.textContent = endResult
 
         calcValue = []
-        calcValue[0] = endResult
-        
+        firstNumber = [endResult]
 }
 
 //Clear button 
