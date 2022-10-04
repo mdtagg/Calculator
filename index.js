@@ -21,14 +21,13 @@ function colorPress(e) {
 }
 
 function changeDisplay(e) {
-    
+
+    operators.forEach(button => {
+        button.classList.remove('transition')
+    })
+   
     if(firstNumber.length >= 9) {
         return
-    }
-    if(calcValue >= 1) {
-        operators.forEach(button => {
-            button.classList.remove('transition')
-        })
     }
 
     let result = document.querySelector('.result')
