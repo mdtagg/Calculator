@@ -4,7 +4,8 @@
 let calcValue = []
 let firstNumber = []
 
-console.log(firstNumber)
+// console.log(firstNumber)
+console.log(calcValue)
 
 const numbers = document.querySelectorAll('.dark-gray')
 numbers.forEach(button => {
@@ -24,6 +25,12 @@ function changeDisplay(e) {
     if(firstNumber.length >= 9) {
         return
     }
+    if(calcValue >= 1) {
+        operators.forEach(button => {
+            button.classList.remove('transition')
+        })
+    }
+
     let result = document.querySelector('.result')
     firstNumber.push(e.target.textContent)
     result.textContent = firstNumber.join('')
@@ -101,8 +108,8 @@ function calculate() {
         calcValue = []
         firstNumber = [endResult]
 
-        console.log(firstNumber)
-        console.log(calcValue)
+        // console.log(firstNumber)
+        // console.log(calcValue)
 }
 
 //Light gray buttons styling effects
@@ -120,7 +127,6 @@ nonOperativeButtons.forEach(button => {
 const clear = document.querySelector('.clear')
 clear.addEventListener('click', () => {
     let clearResult = document.querySelector('.result')
-    // let operators = document.querySelector
     clearResult.textContent = 0
     calcValue = []
     firstNumber = []
