@@ -5,7 +5,18 @@ let calcValue = []
 let firstNumber = []
 
 const numbers = document.querySelectorAll('.dark-gray')
-numbers.forEach(button => button.addEventListener('click', changeDisplay))
+numbers.forEach(button => {
+    button.addEventListener('click', changeDisplay)
+    button.addEventListener('click', colorPress)
+    button.addEventListener('transitionend', (e) => {
+        e.target.classList.remove('color-press')
+    })
+})
+
+function colorPress(e) {
+    console.log(e)
+    e.target.classList.add('color-press')
+}
 
 function changeDisplay(e) {
     

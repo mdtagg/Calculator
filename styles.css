@@ -74,7 +74,6 @@ body {
 }
 
 .transition {
-    
     transition-duration: 0.5s;
     background-color:white;
     color:orange
@@ -83,7 +82,14 @@ body {
 .dark-gray {
     background-color: rgb(113, 113, 113);
     color:white;
+    transition-duration:0.1s;
 }
+
+.color-press {
+    transition-duration:0.1s;
+    background-color:white;  
+    /* color:black; */
+  }
 
 .zero {
     border-radius:30px;
