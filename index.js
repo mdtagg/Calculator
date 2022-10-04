@@ -15,8 +15,9 @@ function changeDisplay(e) {
     let result = document.querySelector('.result')
     firstNumber.push(e.target.textContent)
     result.textContent = firstNumber.join('')
+    // console.log(firstNumber)
     }
-    
+
     // calcValue.push(parseInt(firstNumber.join('')))
 
 
@@ -82,8 +83,7 @@ function calculate() {
     if(stringEndResult.length > 9 && operatorValue !== '÷') {
         endResult = `${stringEndResult[0]}e${stringEndResult.length - 1}`
     } else if(stringEndResult.length > 9 && stringEndResult.includes('.')) {
-        endResult = endResult.toFixed(7)
-        console.log(endResult)
+        endResult = endResult.toFixed(2)
     }
 
     let endResultDisplay = document.querySelector('.result')
@@ -102,4 +102,24 @@ clear.addEventListener('click', () => {
     calcValue = []
     firstNumber = []
     operatorValue = ''
+})
+
+//positive-negative button 
+
+const posNeg = document.querySelector('.pos-neg')
+const displayChange = document.querySelector('.result')
+posNeg.addEventListener('click', () => {
+    if(firstNumber.join('') > 0) {
+        firstNumber.unshift('-')
+        displayChange.textContent = firstNumber.join('')
+        // console.log(firstNumber)
+    }else if(firstNumber.join('') < 0) {
+        // console.log(firstNumber)
+        firstNumber.shift()
+        displayChange.textContent = firstNumber.join('')
+        // console.log(firstNumber)
+    }else {
+        return
+    }
+    console.log(firstNumber.join(''))
 })
