@@ -4,9 +4,6 @@
 let calcValue = []
 let firstNumber = []
 
-// console.log(firstNumber)
-console.log(calcValue)
-
 const numbers = document.querySelectorAll('.dark-gray')
 numbers.forEach(button => {
     button.addEventListener('click', changeDisplay)
@@ -25,6 +22,11 @@ function changeDisplay(e) {
     operators.forEach(button => {
         button.classList.remove('transition')
     })
+
+    
+    if(calcValue.length === 0) {
+        firstNumber = []
+    }
    
     if(firstNumber.length >= 9) {
         return
@@ -33,7 +35,10 @@ function changeDisplay(e) {
     let result = document.querySelector('.result')
     firstNumber.push(e.target.textContent)
     result.textContent = firstNumber.join('')
+
     }
+
+    
 
 /*Changing operator button styling upon click, assigning operator value to global 
 variable */
@@ -64,15 +69,15 @@ function getOperator(e) {
     }
     }
     
-    //Equals button styling effects
+//Equals button styling effects
 
-    const equalsColorPress = document.querySelector('.equals')
-    equalsColorPress.addEventListener('transitionend', (e) => {
-        e.target.classList.remove('transition')
-    })
+const equalsColorPress = document.querySelector('.equals')
+equalsColorPress.addEventListener('transitionend', (e) => {
+    e.target.classList.remove('transition')
+})
 
 
-    //Calculating the values 
+//Calculating the values 
 
 const calculator = document.querySelector('.equals')
 calculator.addEventListener('click', calculate)
@@ -108,7 +113,7 @@ function calculate() {
         firstNumber = [endResult]
 
         // console.log(firstNumber)
-        // console.log(calcValue)
+        console.log(calcValue)
 }
 
 //Light gray buttons styling effects
