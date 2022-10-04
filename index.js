@@ -1,4 +1,6 @@
 
+//Task: get the decimal button operating. 
+
 //Changing display by pressing number buttons
 let calcValue = []
 let firstNumber = []
@@ -37,11 +39,11 @@ function changeColor(e) {
 let operatorValue = ''
 function getOperator(e) {
     if(e.target.textContent === '=') {
-        calcValue.push(parseInt(firstNumber.join('')))
+        calcValue.push(parseFloat(firstNumber.join('')))
         return
     }else {
         operatorValue = e.target.textContent
-        calcValue.push(parseInt(firstNumber.join('')))
+        calcValue.push(parseFloat(firstNumber.join('')))
         firstNumber = []
     }
     }
