@@ -52,14 +52,12 @@ function getOperator(e) {
     }else {
         operatorValue = e.target.textContent
         calcValue.push(parseFloat(firstNumber.join('')))
-        console.log(calcValue)
+        // console.log(calcValue)
         firstNumber = []
-        console.log(firstNumber)
+        // console.log(firstNumber)
     }
-        
     }
     
-
     //Calculating the values 
 
 const calculator = document.querySelector('.equals')
@@ -68,7 +66,7 @@ calculator.addEventListener('click', calculate)
 
 function calculate() {
 
-    const endResult = calcValue.reduce((result,nextNumber) => {
+    let endResult = calcValue.reduce((result,nextNumber) => {
 
         return operatorValue === '+' ?
         result + nextNumber :
@@ -79,11 +77,13 @@ function calculate() {
         result / nextNumber
         
         })
-        console.log(calcValue)
-        console.log(endResult)
+        // console.log(calcValue)
+        // console.log(endResult)
+    let stringEndResult = endResult.toString().split('')
+    console.log(stringEndResult)
 
-    if(endResult.length > 9) {
-        console.log(endResult.toString())
+    if(stringEndResult.length > 9) {
+        endResult = `${stringEndResult[0]}e${stringEndResult.length - 1}`
     }
 
     let endResultDisplay = document.querySelector('.result')
