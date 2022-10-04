@@ -1,5 +1,5 @@
 
-//Task: get the decimal button operating. 
+//Task: Change display so that numbers above screen size add exponent indicator
 
 //Changing display by pressing number buttons
 let calcValue = []
@@ -10,11 +10,16 @@ numbers.forEach(button => button.addEventListener('click', changeDisplay))
 
 function changeDisplay(e) {
     
+    if(firstNumber.length >= 9) {
+        return
+    }
     let result = document.querySelector('.result')
     firstNumber.push(e.target.textContent)
     result.textContent = firstNumber.join('')
+    }
+    
     // calcValue.push(parseInt(firstNumber.join('')))
-}
+
 
 /*Changing operator button styling upon click, assigning operator value to global 
 variable */
@@ -41,12 +46,19 @@ function getOperator(e) {
     if(e.target.textContent === '=') {
         calcValue.push(parseFloat(firstNumber.join('')))
         return
+    }else if(calcValue.length >= 1) {
+        operatorValue = e.target.textContent
+        return
     }else {
         operatorValue = e.target.textContent
         calcValue.push(parseFloat(firstNumber.join('')))
+        console.log(calcValue)
         firstNumber = []
+        console.log(firstNumber)
     }
+        
     }
+    
 
     //Calculating the values 
 
@@ -69,6 +81,10 @@ function calculate() {
         })
         console.log(calcValue)
         console.log(endResult)
+
+    if(endResult.length > 9) {
+        console.log(endResult.toString())
+    }
 
     let endResultDisplay = document.querySelector('.result')
     endResultDisplay.textContent = endResult
