@@ -4,6 +4,8 @@
 let calcValue = []
 let firstNumber = []
 
+console.log(firstNumber)
+
 const numbers = document.querySelectorAll('.dark-gray')
 numbers.forEach(button => {
     button.addEventListener('click', changeDisplay)
@@ -14,7 +16,6 @@ numbers.forEach(button => {
 })
 
 function colorPress(e) {
-    console.log(e)
     e.target.classList.add('color-press')
 }
 
@@ -39,14 +40,8 @@ operators.forEach(button => {
 )
 
 function changeColor(e) {
-    
-    operators.forEach(button => {
-        const classLists = Array.from(button.classList)
-        if(classLists.includes('transition')) {
-            button.classList.remove('transition')
-        }
-        e.target.classList.add('transition');
-})}
+    e.target.classList.add('transition')
+}
 
 let operatorValue = ''
 function getOperator(e) {
@@ -105,6 +100,9 @@ function calculate() {
 
         calcValue = []
         firstNumber = [endResult]
+
+        console.log(firstNumber)
+        console.log(calcValue)
 }
 
 //Light gray buttons styling effects
@@ -122,10 +120,14 @@ nonOperativeButtons.forEach(button => {
 const clear = document.querySelector('.clear')
 clear.addEventListener('click', () => {
     let clearResult = document.querySelector('.result')
+    // let operators = document.querySelector
     clearResult.textContent = 0
     calcValue = []
     firstNumber = []
     operatorValue = ''
+    operators.forEach(button => {
+        button.classList.remove('transition')
+    })
 })
 
 //positive-negative button 
@@ -142,7 +144,6 @@ posNeg.addEventListener('click', () => {
     }else {
         return
     }
-    console.log(firstNumber.join(''))
 })
 
 // percentage button
@@ -152,9 +153,7 @@ percentageButton.addEventListener('click', () => {
     if(firstNumber.join('') !== 0) {
         firstNumber[0] = firstNumber.join('') * .01
         displayChange.textContent = firstNumber
-        console.log(firstNumber)
     } else {
         return
     }
-
 })
