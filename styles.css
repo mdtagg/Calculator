@@ -66,6 +66,7 @@ body {
     background-color: lightgrey;
     color:black;
     font-weight:600;
+    transition-duration:0.3s;
 }
 
 .orange {
@@ -82,11 +83,11 @@ body {
 .dark-gray {
     background-color: rgb(113, 113, 113);
     color:white;
-    transition-duration:0.1s;
+    transition-duration:0.2s;
 }
 
 .color-press {
-    transition-duration:0.1s;
+    transition-duration:0.2s;
     background-color:white;  
     /* color:black; */
   }

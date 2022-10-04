@@ -99,6 +99,18 @@ function calculate() {
         firstNumber = [endResult]
 }
 
+//Light gray buttons styling effects
+
+const nonOperativeButtons = document.querySelectorAll('.light-gray')
+nonOperativeButtons.forEach(button => {
+    button.addEventListener('click', colorPress)
+    button.addEventListener('transitionend', (e) => {
+        e.target.classList.remove('color-press')
+    })
+})
+
+
+
 //Clear button 
 
 const clear = document.querySelector('.clear')
