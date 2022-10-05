@@ -56,7 +56,7 @@ function getOperator(e) {
     if(e.target.textContent === '=') {
         calcValue.push(parseFloat(firstNumber.join('')))
         return
-    }else if(calcValue.length === 1) {
+    }else if(calcValue.length >= 1) {
         operatorValue = e.target.textContent
         calcValue.push(parseFloat(firstNumber.join('')))
         firstNumber = []
