@@ -23,7 +23,6 @@ function changeDisplay(e) {
         button.classList.remove('transition')
     })
 
-    
     if(calcValue.length === 0) {
         firstNumber = []
     }
@@ -37,8 +36,6 @@ function changeDisplay(e) {
     result.textContent = firstNumber.join('')
 
     }
-
-    
 
 /*Changing operator button styling upon click, assigning operator value to global 
 variable */
@@ -59,13 +56,16 @@ function getOperator(e) {
     if(e.target.textContent === '=') {
         calcValue.push(parseFloat(firstNumber.join('')))
         return
-    }else if(calcValue.length >= 1) {
+    }else if(calcValue.length === 1) {
         operatorValue = e.target.textContent
-        return
+        calcValue.push(parseFloat(firstNumber.join('')))
+        firstNumber = []
+        calculate()
     }else {
         operatorValue = e.target.textContent
         calcValue.push(parseFloat(firstNumber.join('')))
         firstNumber = []
+        console.log(calcValue)
     }
     }
     
@@ -84,7 +84,7 @@ calculator.addEventListener('click', calculate)
 
 
 function calculate() {
-
+console.log(calcValue)
     let endResult = calcValue.reduce((result,nextNumber) => {
 
         return operatorValue === '+' ?
