@@ -18,6 +18,8 @@ body {
     height:80vh;
     width:26vw;
     background-color: black;
+    border-radius:7px;
+    /* border:2px solid white; */
 }
 
 .display {
