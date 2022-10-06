@@ -31,7 +31,6 @@ function changeDisplay(e) {
         return
     }
 
-    // let result = document.querySelector('.result')
     firstNumber.push(e.target.textContent)
     result.textContent = firstNumber.join('')
     }
@@ -47,7 +46,6 @@ operatorButtons.forEach(button => {
 function changeColor(e) {
     e.target.classList.add('orange-color-press')
 }
-
 
 let operatorValue = ''
 function getOperator(e) {
@@ -69,8 +67,7 @@ function getOperator(e) {
     }
     else {
         operatorValue = e.target.textContent
-    }
-    }
+    }}
     
 //Equals button 
 
@@ -85,7 +82,7 @@ const calculator = document.querySelector('.equals')
 calculator.addEventListener('click', calculate)
 
 function calculate() {
-    calcTest = true
+
     let endResult = calculationValuesArray.reduce((result,nextNumber) => {
 
         return operatorValue === '+' ?
@@ -112,6 +109,7 @@ function calculate() {
     endResultDisplay.textContent = endResult
 
     calculationValuesArray = [endResult]
+    firstNumber = []
     operatorValue = '='
     
 }
@@ -128,8 +126,7 @@ nonOperativeButtons.forEach(button => {
 
 const clear = document.querySelector('.clear')
 clear.addEventListener('click', () => {
-    let clearResult = document.querySelector('.result')
-    clearResult.textContent = 0
+    result.textContent = 0
     calculationValuesArray = []
     firstNumber = []
     operatorValue = ''
@@ -141,20 +138,18 @@ clear.addEventListener('click', () => {
 //positive-negative button 
 
 const posNeg = document.querySelector('.pos-neg')
-const displayChange = document.querySelector('.result')
+
 posNeg.addEventListener('click', () => {
     if(firstNumber.join('') > 0) {
         firstNumber.unshift('-')
-        displayChange.textContent = firstNumber.join('')
+        result.textContent = firstNumber.join('')
     }else if(firstNumber.join('') < 0) {
         firstNumber.shift()
-        displayChange.textContent = firstNumber.join('')
+        result.textContent = firstNumber.join('')
     }else if(calculationValuesArray[0] > 0 || calculationValuesArray[0] < 0) {
         calculationValuesArray[0] *= -1
-        displayChange.textContent = calculationValuesArray[0]
-        console.log(calculationValuesArray)
-    }
-    else {
+        result.textContent = calculationValuesArray[0]
+    }else {
         return
     }
 })
@@ -163,10 +158,23 @@ posNeg.addEventListener('click', () => {
 
 const percentageButton = document.querySelector('.percentage')
 percentageButton.addEventListener('click', () => {
-    if(firstNumber.join('') !== 0) {
-        firstNumber[0] = firstNumber.join('') * .01
-        displayChange.textContent = firstNumber
-    } else {
+    
+    if(operatorValue === '=') {
+        calculationValuesArray[0] *= .01
+        result.textContent = calculationValuesArray[0]
+        console.log(calculationValuesArray)
+    }
+    else if(typeof(firstNumber) === 'object') {
+        firstNumber = parseInt(firstNumber.join(''))
+        firstNumber *= .01
+        result.textContent = firstNumber
+    }
+    else if(typeof(firstNumber) === 'number') {
+        firstNumber *= .01
+        result.textContent = firstNumber
+    }
+    else {
         return
     }
+    
 })
