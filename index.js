@@ -11,7 +11,9 @@ numberButtons.forEach(button => {
     button.addEventListener('click', changeDisplay)
     button.addEventListener('click', colorPress)
     button.addEventListener('transitionend', removeColorPress)
-    })
+    button.addEventListener('transitioncancel', (e) => {
+        e.target.classList.remove('color-press')
+    })})
 
 function colorPress(e) {
     e.target.classList.add('color-press')
@@ -165,16 +167,11 @@ percentageButton.addEventListener('click', () => {
         console.log(calculationValuesArray)
     }
     else if(typeof(firstNumber) === 'object') {
-        firstNumber = parseInt(firstNumber.join(''))
+        firstNumber = parseFloat(firstNumber.join(''))
         firstNumber *= .01
         result.textContent = firstNumber
-    }
-    else if(typeof(firstNumber) === 'number') {
-        firstNumber *= .01
-        result.textContent = firstNumber
-    }
-    else {
+        firstNumber = firstNumber.toString().split('')
+    }else {
         return
     }
-    
 })
