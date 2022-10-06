@@ -83,11 +83,11 @@ body {
 .dark-gray {
     background-color: rgb(113, 113, 113);
     color:white;
-    transition-duration:0.2s;
+    transition-duration:0.1s;
 }
 
 .color-press {
-    transition-duration:0.2s;
+    transition-duration:0.1s;
     background-color:white;  
     /* color:black; */
   }
