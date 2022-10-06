@@ -76,7 +76,7 @@ body {
     color:white;
 }
 
-.transition {
+.orange-color-press {
     transition-duration: 0.5s;
     background-color:white;
     color:orange

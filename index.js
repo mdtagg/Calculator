@@ -1,75 +1,82 @@
 
 
 //Changing display by pressing number buttons
-let calcValue = []
+let calculationValuesArray = []
 let firstNumber = []
+let result = document.querySelector('.result')
 
-const numbers = document.querySelectorAll('.dark-gray')
-numbers.forEach(button => {
+const numberButtons = document.querySelectorAll('.dark-gray')
+
+numberButtons.forEach(button => {
     button.addEventListener('click', changeDisplay)
     button.addEventListener('click', colorPress)
-    button.addEventListener('transitionend', (e) => {
-        e.target.classList.remove('color-press')
+    button.addEventListener('transitionend', removeColorPress)
     })
-})
 
 function colorPress(e) {
     e.target.classList.add('color-press')
 }
 
+function removeColorPress(e) {
+    e.target.classList.remove('color-press')
+}
+
 function changeDisplay(e) {
 
-    operators.forEach(button => {
-        button.classList.remove('transition')
+    operatorButtons.forEach(button => {
+        button.classList.remove('orange-color-press')
     })
    
     if(firstNumber.length >= 9) {
         return
     }
 
-    let result = document.querySelector('.result')
+    // let result = document.querySelector('.result')
     firstNumber.push(e.target.textContent)
     result.textContent = firstNumber.join('')
-    // console.log('firstNumber array:', firstNumber)
     }
 
-/*Changing operator button styling upon click, assigning operator value to global 
-variable */
+//operator buttons
 
-const operators = document.querySelectorAll('.orange')
-operators.forEach(button => {
+const operatorButtons = document.querySelectorAll('.orange')
+operatorButtons.forEach(button => {
     button.addEventListener('click', changeColor)
     button.addEventListener('click',getOperator)
-}
-)
+})
 
 function changeColor(e) {
-    e.target.classList.add('transition')
+    e.target.classList.add('orange-color-press')
 }
+
 
 let operatorValue = ''
 function getOperator(e) {
+    
+    if(operatorValue === '=') {
+        operatorValue = e.target.textContent
+        return
+    }
+
+    calculationValuesArray.push(parseFloat(firstNumber.join('')))
+    firstNumber = []
 
     if(e.target.textContent === '=') {
-        calcValue.push(parseFloat(firstNumber.join('')))
         return
-    }else if(calcValue.length >= 1) {
-        calcValue.push(parseFloat(firstNumber.join('')))
-        firstNumber = []
+    }
+    else if(calculationValuesArray.length > 1) {
         calculate()
         operatorValue = e.target.textContent
-    }else {
+    }
+    else {
         operatorValue = e.target.textContent
-        calcValue.push(parseFloat(firstNumber.join('')))
-        firstNumber = []
     }
     }
     
-//Equals button styling effects
+//Equals button 
 
 const equalsColorPress = document.querySelector('.equals')
 equalsColorPress.addEventListener('transitionend', (e) => {
-    e.target.classList.remove('transition')
+    e.target.classList.remove('orange-color-press')
 })
 
 //Calculating the values 
@@ -77,11 +84,9 @@ equalsColorPress.addEventListener('transitionend', (e) => {
 const calculator = document.querySelector('.equals')
 calculator.addEventListener('click', calculate)
 
-
-
 function calculate() {
-    console.log('calcValue after equals is pressed:', calcValue)
-    let endResult = calcValue.reduce((result,nextNumber) => {
+    calcTest = true
+    let endResult = calculationValuesArray.reduce((result,nextNumber) => {
 
         return operatorValue === '+' ?
         result + nextNumber :
@@ -93,8 +98,9 @@ function calculate() {
         
         })
 
+//check for displaying results over 9 places long
+
     let stringEndResult = endResult.toString().split('')
-    
 
     if(stringEndResult.length > 9 && operatorValue !== '÷') {
         endResult = `${stringEndResult[0]}e${stringEndResult.length - 1}`
@@ -105,10 +111,9 @@ function calculate() {
     let endResultDisplay = document.querySelector('.result')
     endResultDisplay.textContent = endResult
 
-    console.log('endResult',endResult)
-
-        calcValue = [endResult]
-        firstNumber = []
+    calculationValuesArray = [endResult]
+    operatorValue = '='
+    
 }
 
 //Light gray buttons styling effects
@@ -116,10 +121,8 @@ function calculate() {
 const nonOperativeButtons = document.querySelectorAll('.light-gray')
 nonOperativeButtons.forEach(button => {
     button.addEventListener('click', colorPress)
-    button.addEventListener('transitionend', (e) => {
-        e.target.classList.remove('color-press')
+    button.addEventListener('transitionend', removeColorPress)
     })
-})
 
 //Clear button 
 
@@ -127,11 +130,11 @@ const clear = document.querySelector('.clear')
 clear.addEventListener('click', () => {
     let clearResult = document.querySelector('.result')
     clearResult.textContent = 0
-    calcValue = []
+    calculationValuesArray = []
     firstNumber = []
     operatorValue = ''
-    operators.forEach(button => {
-        button.classList.remove('transition')
+    operatorButtons.forEach(button => {
+        button.classList.remove('orange-color-press')
     })
 })
 
@@ -146,7 +149,12 @@ posNeg.addEventListener('click', () => {
     }else if(firstNumber.join('') < 0) {
         firstNumber.shift()
         displayChange.textContent = firstNumber.join('')
-    }else {
+    }else if(calculationValuesArray[0] > 0 || calculationValuesArray[0] < 0) {
+        calculationValuesArray[0] *= -1
+        displayChange.textContent = calculationValuesArray[0]
+        console.log(calculationValuesArray)
+    }
+    else {
         return
     }
 })
