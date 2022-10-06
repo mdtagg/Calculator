@@ -22,10 +22,6 @@ function changeDisplay(e) {
     operators.forEach(button => {
         button.classList.remove('transition')
     })
-
-    if(calcValue.length === 0) {
-        firstNumber = []
-    }
    
     if(firstNumber.length >= 9) {
         return
@@ -34,7 +30,7 @@ function changeDisplay(e) {
     let result = document.querySelector('.result')
     firstNumber.push(e.target.textContent)
     result.textContent = firstNumber.join('')
-
+    // console.log('firstNumber array:', firstNumber)
     }
 
 /*Changing operator button styling upon click, assigning operator value to global 
@@ -53,19 +49,19 @@ function changeColor(e) {
 
 let operatorValue = ''
 function getOperator(e) {
+
     if(e.target.textContent === '=') {
         calcValue.push(parseFloat(firstNumber.join('')))
         return
     }else if(calcValue.length >= 1) {
-        operatorValue = e.target.textContent
         calcValue.push(parseFloat(firstNumber.join('')))
         firstNumber = []
         calculate()
+        operatorValue = e.target.textContent
     }else {
         operatorValue = e.target.textContent
         calcValue.push(parseFloat(firstNumber.join('')))
         firstNumber = []
-        console.log(calcValue)
     }
     }
     
@@ -76,15 +72,15 @@ equalsColorPress.addEventListener('transitionend', (e) => {
     e.target.classList.remove('transition')
 })
 
-
 //Calculating the values 
 
 const calculator = document.querySelector('.equals')
 calculator.addEventListener('click', calculate)
 
 
+
 function calculate() {
-console.log(calcValue)
+    console.log('calcValue after equals is pressed:', calcValue)
     let endResult = calcValue.reduce((result,nextNumber) => {
 
         return operatorValue === '+' ?
@@ -98,7 +94,7 @@ console.log(calcValue)
         })
 
     let stringEndResult = endResult.toString().split('')
-    console.log(stringEndResult)
+    
 
     if(stringEndResult.length > 9 && operatorValue !== '÷') {
         endResult = `${stringEndResult[0]}e${stringEndResult.length - 1}`
@@ -109,11 +105,10 @@ console.log(calcValue)
     let endResultDisplay = document.querySelector('.result')
     endResultDisplay.textContent = endResult
 
-        calcValue = []
-        firstNumber = [endResult]
+    console.log('endResult',endResult)
 
-        // console.log(firstNumber)
-        console.log(calcValue)
+        calcValue = [endResult]
+        firstNumber = []
 }
 
 //Light gray buttons styling effects
